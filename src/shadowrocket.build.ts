@@ -32,16 +32,17 @@ include = {__conf_file__}
 
 
 [Proxy Group]
-# 新加坡节点 = url-test,url=http://www.gstatic.com/generate_204,interval=3600,tolerance=10,timeout=5,select=0,policy-regex-filter=(?=.*(新加坡).)^((?!(IPLC)).)*$
-新加坡节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=新加坡(A|B)
-香港节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=香港(A|B)
-美国节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=美国(A|B)
-日本节点 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=日本(A|B)
+# 新加坡 = url-test,url=http://www.gstatic.com/generate_204,interval=3600,tolerance=10,timeout=5,select=0,policy-regex-filter=(?=.*(新加坡).)^((?!(IPLC)).)*$
+新加坡 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=新加坡(A|B)
+香港 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=香港(A|B)
+美国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=美国(A|B)
+日本 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=日本(A|B)
 
 
 [Rule]
 DOMAIN-SUFFIX,cityline.com,PROXY
-RULE_SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,新加坡节点
+RULE_SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,新加坡
+
 `;
 
 const time = new Date().toLocaleString('zh-CN', {
