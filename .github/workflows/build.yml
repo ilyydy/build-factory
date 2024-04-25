@@ -41,11 +41,11 @@ jobs:
       - run: pnpm i --frozen-lockfile
       - name: Run *.build.ts
         run: |
-        for file in src/*.build.ts
-        do
-          echo run "$file"
-          pnpm tsx "$file"
-        done
+          for file in src/*.build.ts
+          do
+            echo run "$file"
+            pnpm tsx "$file"
+          done
       - name: push to branch
         uses: JamesIves/github-pages-deploy-action@releases/v4
         with:
