@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  push:
+    branches: ['main']
+    paths:
+      - 'src/*.build.ts'
+  pull_request:
+    branches: ['main']
+    paths:
+      - 'src/*.build.ts'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+      # - name: Get and check changed files
+      #   id: getChangedfile
+      #   run: |
+      #     files=$(git diff --name-only --diff-filter=AM HEAD^ HEAD | grep 'src/.*\.build\.ts$' | xargs)
+      #     if [ -z "$files" ]; then
+      #       echo "No .build.ts files were changed."
+      #       exit 0
+      #     else
+      #       echo "::set-output name=files::$files"
+      #     fi
+
+      - uses: pnpm/action-setup@v3
+        with:
+          version: 9
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "pnpm"
+      - run: pnpm i --frozen-lockfile
+      - name: Run *.build.ts
+        run: |
+        for file in src/*.build.ts
+        do
+          echo run "$file"
+          pnpm tsx "$file"
+        done
+      - name: push to branch
+        uses: JamesIves/github-pages-deploy-action@releases/v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: release
+          folder: dist
