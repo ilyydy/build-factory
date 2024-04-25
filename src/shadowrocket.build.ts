@@ -24,10 +24,10 @@ const conf_map = {
 };
 
 const template = `
-# 基于{__name__}(https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever)的扩展版本
-# {__time__}
 
 [General]
+# 基于{__name__}(https://github.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever)的扩展版本
+# {__time__}
 include = {__conf_file__}
 
 
