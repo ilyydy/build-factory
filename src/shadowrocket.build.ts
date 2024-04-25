@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import QRCode from 'qrcode';
 
 import { mkDist, distPath } from './common';
 
@@ -9,17 +10,17 @@ const conf_map = {
   black_ad: {
     name: '黑名单过滤 + 广告',
     conf_file: 'sr_top500_banlist_ad.conf',
-    output_file: 'my_black_ad.conf',
+    output_file: 'my_black_ad',
   },
   white_ad: {
     name: '白名单过滤 + 广告',
     conf_file: 'sr_top500_whitelist_ad.conf',
-    output_file: 'my_white_ad.conf',
+    output_file: 'my_white_ad',
   },
   lazy: {
     name: '懒人配置',
     conf_file: 'lazy.conf',
-    output_file: 'my_lazy.conf',
+    output_file: 'my_lazy',
   },
 };
 
@@ -50,10 +51,24 @@ const time = new Date().toLocaleString('zh-CN', {
   hour12: false,
 });
 
-for (const [key, conf] of Object.entries(conf_map)) {
-  const content = template
-    .replace('{__name__}', conf.name)
-    .replace('{__time__}', time)
-    .replace('{__conf_file__}', conf.conf_file);
-  fs.writeFileSync(path.join(distPath, conf.output_file), content);
+async function build() {
+  for (const [key, conf] of Object.entries(conf_map)) {
+    const content = template
+      .replace('{__name__}', conf.name)
+      .replace('{__time__}', time)
+      .replace('{__conf_file__}', conf.conf_file);
+
+    const p = path.join(distPath, conf.output_file);
+    fs.writeFileSync(`${p}.conf`, content);
+    await QRCode.toFile(
+      `${p}.png`,
+      `https://raw.githubusercontent.com/ilyydy/build-factory/release/${conf.output_file}.conf`,
+      {
+        width: 300,
+        margin: 1,
+      }
+    );
+  }
 }
+
+build();
