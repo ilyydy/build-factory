@@ -1,14 +1,14 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-import { mkDist, distPath } from './common'
+import { mkDist, distPath } from './common';
 
 mkDist();
 
 const conf_map = {
   black_ad: {
     name: '黑名单过滤 + 广告',
-    conf_file: 'sr_top500_banlist.conf',
+    conf_file: 'sr_top500_banlist_ad.conf',
     output_file: 'my_black_ad.conf',
   },
   white_ad: {
@@ -41,7 +41,7 @@ include = {__conf_file__}
 
 [Rule]
 DOMAIN-SUFFIX,cityline.com,PROXY
-RULE_SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,新加坡
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,新加坡
 
 `;
 
