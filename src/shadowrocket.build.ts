@@ -38,11 +38,18 @@ include = {__conf_file__}
 香港 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=香港(A|B)
 美国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=美国(A|B)
 日本 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=日本(A|B)
+台湾 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=台湾(A|B)
+泰国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=泰国(A|B)
+韩国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=韩国(A|B)
+菲律宾 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=菲律宾(A|B)
 
+TikTok = select,PROXY,香港,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
+CiCi = select,PROXY,新加坡,菲律宾,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 
 [Rule]
+DOMAIN-SUFFIX,ciciai.com,CiCi
 DOMAIN-SUFFIX,cityline.com,PROXY
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,新加坡
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,TikTok
 
 `;
 
