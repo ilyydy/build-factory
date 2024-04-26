@@ -1,6 +1,5 @@
 import fs from 'node:fs';
 import path from 'node:path';
-import QRCode from 'qrcode';
 
 import { mkDist, distPath } from './common';
 
@@ -10,17 +9,17 @@ const conf_map = {
   black_ad: {
     name: '黑名单过滤 + 广告',
     conf_file: 'sr_top500_banlist_ad.conf',
-    output_file: 'my_black_ad',
+    output_file: 'my_black_ad.conf',
   },
   white_ad: {
     name: '白名单过滤 + 广告',
     conf_file: 'sr_top500_whitelist_ad.conf',
-    output_file: 'my_white_ad',
+    output_file: 'my_white_ad.conf',
   },
   lazy: {
     name: '懒人配置',
     conf_file: 'lazy.conf',
-    output_file: 'my_lazy',
+    output_file: 'my_lazy.conf',
   },
 };
 
@@ -58,7 +57,7 @@ const time = new Date().toLocaleString('zh-CN', {
   hour12: false,
 });
 
-async function build() {
+function build() {
   for (const [key, conf] of Object.entries(conf_map)) {
     const content = template
       .replace('{__name__}', conf.name)
@@ -66,15 +65,7 @@ async function build() {
       .replace('{__conf_file__}', conf.conf_file);
 
     const p = path.join(distPath, conf.output_file);
-    fs.writeFileSync(`${p}.conf`, content);
-    await QRCode.toFile(
-      `${p}.png`,
-      `https://raw.githubusercontent.com/ilyydy/build-factory/release/${conf.output_file}.conf`,
-      {
-        width: 300,
-        margin: 1,
-      }
-    );
+    fs.writeFileSync(p, content);
   }
 }
 
