@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@types/node':
         specifier: ^20.12.7
-        version: 20.12.9
+        version: 20.12.12
       '@types/qrcode':
         specifier: ^1.5.5
         version: 1.5.5
@@ -164,8 +164,8 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  '@types/node@20.12.9':
-    resolution: {integrity: sha512-o93r47yu04MHumPBCFg0bMPBMNgtMg3jzbhl7e68z50+BMHmRMGDJv13eBlUgOdc9i/uoJXGMGYLtJV4ReTXEg==}
+  '@types/node@20.12.12':
+    resolution: {integrity: sha512-eWLDGF/FOSPtAvEqeRAQ4C8LSA7M1I7i0ky1I8U7kD1J5ITyW3AsRhQrKVoWf5pFKZ2kILsEGJhsI9r93PYnOw==}
 
   '@types/qrcode@1.5.5':
     resolution: {integrity: sha512-CdfBi/e3Qk+3Z/fXYShipBT13OJ2fDO2Q2w5CIP5anLTLIndQG9z6P1cnm+8zCWSpm5dnxMFd/uREtb0EXuQzg==}
@@ -382,13 +382,13 @@ snapshots:
   '@esbuild/win32-x64@0.20.2':
     optional: true
 
-  '@types/node@20.12.9':
+  '@types/node@20.12.12':
     dependencies:
       undici-types: 5.26.5
 
   '@types/qrcode@1.5.5':
     dependencies:
-      '@types/node': 20.12.9
+      '@types/node': 20.12.12
 
   ansi-regex@5.0.1: {}
 
