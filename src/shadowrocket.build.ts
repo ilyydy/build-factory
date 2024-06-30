@@ -44,7 +44,7 @@ include = {__conf_file__}
 
 CiCi = select,新加坡,菲律宾,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 OpenAI = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
-TikTok = select,香港,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
+TikTok = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 
 
 [Rule]
