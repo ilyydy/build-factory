@@ -45,6 +45,7 @@ include = {__conf_file__}
 CiCi = select,新加坡,菲律宾,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 OpenAI = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 TikTok = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
+Gemini = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 
 
 [Rule]
@@ -52,6 +53,7 @@ DOMAIN-SUFFIX,ciciai.com,CiCi
 DOMAIN-SUFFIX,cityline.com,PROXY
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,OpenAI
 RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,TikTok
+RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,Gemini
 
 `;
 
