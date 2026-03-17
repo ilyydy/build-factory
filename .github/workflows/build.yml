@@ -30,7 +30,7 @@ jobs:
       #       echo "::set-output name=files::$files"
       #     fi
 
-      - uses: pnpm/action-setup@v3
+      - uses: pnpm/action-setup@v5
         with:
           version: 9
       - name: Use Node.js ${{ matrix.node-version }}
