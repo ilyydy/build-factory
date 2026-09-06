@@ -5,20 +5,26 @@ on:
     branches: ['main']
     paths:
       - 'src/*.build.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/build.yml'
   pull_request:
     branches: ['main']
     paths:
       - 'src/*.build.ts'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/build.yml'
 
 jobs:
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [24.x]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       # - name: Get and check changed files
       #   id: getChangedfile
       #   run: |
@@ -30,21 +36,18 @@ jobs:
       #       echo "::set-output name=files::$files"
       #     fi
 
-      - uses: pnpm/action-setup@v3
-        with:
-          version: 9
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v7
         with:
           node-version: ${{ matrix.node-version }}
-          cache: "pnpm"
-      - run: pnpm i --frozen-lockfile
+          cache: 'npm'
+      - run: npm ci
       - name: Run *.build.ts
         run: |
           for file in src/*.build.ts
           do
             echo run "$file"
-            pnpm tsx "$file"
+            npx tsx "$file"
           done
       - name: push to branch
         uses: JamesIves/github-pages-deploy-action@releases/v4
