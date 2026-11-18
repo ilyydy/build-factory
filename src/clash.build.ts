@@ -50,7 +50,7 @@ const proxyGroups = [
   ...services.map(name => ({
     name,
     type: 'select',
-    proxies: [proxy, '新加坡', '台湾', '日本', '韩国', '美国'],
+    proxies: ['新加坡', '台湾', '日本', '韩国', '美国', proxy],
   })),
 ];
 

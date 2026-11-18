@@ -73,7 +73,7 @@ proxy-providers:
       interval: 600
 ```
 
-订阅链接和 token 只填在本地覆写里。Mihomo 可以从原订阅 URL 读取含 `proxies:` 的 YAML 或其支持的 URI/Base64 节点列表。首次启动时，节点订阅和公开规则集通过直连拉取，以便在节点组为空时完成加载。服务策略组默认跟随「节点选择」，也可以指定一个地区测速组。 [代理集合格式](https://wiki.metacubex.one/config/proxy-providers/content/)
+订阅链接和 token 只填在本地覆写里。Mihomo 可以从原订阅 URL 读取含 `proxies:` 的 YAML 或其支持的 URI/Base64 节点列表。首次启动时，节点订阅和公开规则集通过直连拉取，以便在节点组为空时完成加载。服务策略组首次使用时默认选「新加坡」，已有的选择会被保留。选择末尾的「节点选择」即可跟随通用代理节点。 [代理集合格式](https://wiki.metacubex.one/config/proxy-providers/content/)
 
 ### 日常更新
 
