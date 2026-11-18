@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "clash-build": "tsx src/clash.build.ts",
     "shadowrocket-build": "npx tsx src/shadowrocket.build.ts"
   },
   "keywords": [],
