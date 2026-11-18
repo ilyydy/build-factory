@@ -93,16 +93,16 @@ proxy-groups:
     empty-fallback: "REJECT"
   - name: "OpenAI"
     type: "select"
-    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+    proxies: ["新加坡","台湾","日本","韩国","美国","节点选择"]
   - name: "TikTok"
     type: "select"
-    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+    proxies: ["新加坡","台湾","日本","韩国","美国","节点选择"]
   - name: "Gemini"
     type: "select"
-    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+    proxies: ["新加坡","台湾","日本","韩国","美国","节点选择"]
   - name: "Anthropic"
     type: "select"
-    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+    proxies: ["新加坡","台湾","日本","韩国","美国","节点选择"]
 
 rule-providers:
   blackmatrix-openai-openai:
