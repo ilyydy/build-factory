@@ -40,19 +40,20 @@ include = {__conf_file__}
 泰国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=(?i)(泰国|Thailand|th)
 韩国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=(?i)(韩国|South Korea|Korea|kr)
 菲律宾 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=(?i)(菲律宾|Philippines|ph)
+德国 = url-test,url=http://www.gstatic.com/generate_204,interval=600,tolerance=10,timeout=5,select=0,policy-regex-filter=(?i)(德国|Germany|de)
 
-CiCi = select,新加坡,菲律宾,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 OpenAI = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 TikTok = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 Gemini = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
+Anthropic = select,新加坡,台湾,日本,韩国,美国,interval=600,timeout=5,select=0,url=http://www.gstatic.com/generate_204
 
 
 [Rule]
-DOMAIN-SUFFIX,ciciai.com,CiCi
 DOMAIN-SUFFIX,cityline.com,PROXY
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/OpenAI/OpenAI.list,OpenAI
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/TikTok/TikTok.list,TikTok
-RULE-SET,https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Shadowrocket/Gemini/Gemini.list,Gemini
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Shadowrocket/OpenAI/OpenAI.list,OpenAI
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Shadowrocket/TikTok/TikTok.list,TikTok
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Shadowrocket/Gemini/Gemini.list,Gemini
+RULE-SET,https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Shadowrocket/Anthropic/Anthropic.list,Anthropic
 
 `;
 
