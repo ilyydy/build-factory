@@ -1,56 +1,43 @@
-import fs from 'node:fs';
-import path from 'node:path';
-
-import { distPath, mkDist } from './common';
+import { writeArtifact } from './common';
+import {
+  blackmatrixRuleRoot,
+  citylineDomain,
+  ghproxyPrefix,
+  latencyTest,
+  regions,
+  serviceRegions,
+  services,
+  variants,
+} from './proxy-config';
 
 const upstream = [
   'https://raw.githubusercontent.com/Johnshall/Shadowrocket-ADBlock-Rules-Forever/release',
   'https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever',
 ];
 const release = 'https://raw.githubusercontent.com/ilyydy/build-factory/release';
-const ghproxy = 'https://ghproxy.net/';
-const blackmatrix = 'https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule';
 const ruleDir = 'clash-rules';
 const license = 'https://creativecommons.org/licenses/by-sa/4.0/';
 const proxy = '节点选择';
 const testUrl = 'https://www.gstatic.com/generate_204';
-const services = ['OpenAI', 'TikTok', 'Gemini', 'Anthropic'];
-
-const variants = [
-  { name: 'my_black_ad', source: 'sr_top500_banlist_ad.conf' },
-  { name: 'my_white_ad', source: 'sr_top500_whitelist_ad.conf' },
-  { name: 'my_lazy', source: 'lazy.conf' },
-];
-
-const regions = [
-  ['新加坡', '新加坡|Singapore|SG|🇸🇬'],
-  ['香港', '香港|Hong[ -]?Kong|HK|🇭🇰'],
-  ['美国', '美国|美國|United States|USA|America|US|🇺🇸'],
-  ['日本', '日本|Japan|JP|🇯🇵'],
-  ['台湾', '台湾|台灣|Taiwan|TW|🇹🇼'],
-  ['泰国', '泰国|泰國|Thailand|TH|🇹🇭'],
-  ['韩国', '韩国|韓國|South Korea|Korea|KR|🇰🇷'],
-  ['菲律宾', '菲律宾|菲律賓|Philippines|PH|🇵🇭'],
-  ['德国', '德国|德國|Germany|DE|🇩🇪'],
-];
+const { intervalSeconds, toleranceMs, timeoutSeconds } = latencyTest;
 
 const proxyGroups = [
   { name: proxy, type: 'select', 'include-all': true, 'empty-fallback': 'REJECT' },
-  ...regions.map(([name, filter]) => ({
+  ...regions.map(({ name, clashAliases }) => ({
     name,
     type: 'url-test',
     'include-all': true,
-    filter: `(?i)(${filter.replace(/\b[A-Z]{2,3}\b/g, code => `\\b${code}\\b`)})`,
+    filter: `(?i)(${name}|${clashAliases.replace(/\b[A-Z]{2,3}\b/g, code => `\\b${code}\\b`)})`,
     url: testUrl,
-    interval: 600,
-    tolerance: 10,
-    timeout: 5000,
+    interval: intervalSeconds,
+    tolerance: toleranceMs,
+    timeout: timeoutSeconds * 1000,
     'empty-fallback': 'REJECT',
   })),
   ...services.map(name => ({
     name,
     type: 'select',
-    proxies: ['新加坡', '台湾', '日本', '韩国', '美国', proxy],
+    proxies: [...serviceRegions, proxy],
   })),
 ];
 
@@ -119,13 +106,13 @@ async function fetchRoutes(source: string): Promise<Route[]> {
 }
 
 function externalProvider(url: string): [string, Provider] {
-  const source = url.startsWith(`${blackmatrix}/`) &&
-    url.slice(blackmatrix.length + 1).match(/^(?:Shadowrocket|QuantumultX)\/([A-Za-z0-9_-]+)\/([A-Za-z0-9_-]+)\.list$/);
+  const source = url.startsWith(`${blackmatrixRuleRoot}/`) &&
+    url.slice(blackmatrixRuleRoot.length + 1).match(/^(?:Shadowrocket|QuantumultX)\/([A-Za-z0-9_-]+)\/([A-Za-z0-9_-]+)\.list$/);
   if (source) {
     const [, directory, file] = source;
     return [
       `blackmatrix-${directory.toLowerCase()}-${file.toLowerCase()}`,
-      { url: `${blackmatrix}/Clash/${directory}/${file}.yaml`, behavior: 'classical', format: 'yaml' },
+      { url: `${blackmatrixRuleRoot}/Clash/${directory}/${file}.yaml`, behavior: 'classical', format: 'yaml' },
     ];
   }
 
@@ -174,10 +161,10 @@ function compileProfile({ name, source }: Variant, routes: Route[]) {
   ].join('\n');
   const artifacts = new Map<string, string>();
   const providers = new Map<string, Provider>();
-  const rules = [`DOMAIN-SUFFIX,cityline.com,${proxy}`];
+  const rules = [`DOMAIN-SUFFIX,${citylineDomain},${proxy}`];
 
   for (const service of services) {
-    const [key, provider] = externalProvider(`${blackmatrix}/Shadowrocket/${service}/${service}.list`);
+    const [key, provider] = externalProvider(`${blackmatrixRuleRoot}/Shadowrocket/${service}/${service}.list`);
     providers.set(key, provider);
     rules.push(`RULE-SET,${key},${service}`);
   }
@@ -245,7 +232,7 @@ function compileProfile({ name, source }: Variant, routes: Route[]) {
   }
 
   artifacts.set(`${name}.yaml`, renderProfile(header, providers, rules));
-  artifacts.set(`${name}_ghproxy.yaml`, renderProfile(header, providers, rules, ghproxy));
+  artifacts.set(`${name}_ghproxy.yaml`, renderProfile(header, providers, rules, ghproxyPrefix));
   return artifacts;
 }
 
@@ -258,11 +245,9 @@ async function build() {
     }
   }));
 
-  mkDist();
-  fs.mkdirSync(path.join(distPath, ruleDir), { recursive: true });
   for (const artifacts of profiles) {
     for (const [file, content] of artifacts) {
-      fs.writeFileSync(path.join(distPath, file), content);
+      writeArtifact(file, content);
     }
   }
 }

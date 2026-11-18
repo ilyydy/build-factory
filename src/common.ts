@@ -2,7 +2,11 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import fs from 'node:fs';
 
-export const currentModuleDir = path.dirname(fileURLToPath(import.meta.url));
-export const projectRootPath = path.resolve(currentModuleDir, '..');
-export const distPath = path.join(projectRootPath, 'dist');
-export const mkDist = () => fs.mkdirSync(distPath, { recursive: true });
+const currentModuleDir = path.dirname(fileURLToPath(import.meta.url));
+const distPath = path.resolve(currentModuleDir, '..', 'dist');
+
+export function writeArtifact(file: string, content: string) {
+  const outputPath = path.join(distPath, file);
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true });
+  fs.writeFileSync(outputPath, content);
+}
