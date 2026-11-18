@@ -1,0 +1,9 @@
+# Johnshall / Shadowrocket-ADBlock-Rules-Forever: https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever/sr_top500_whitelist_ad.conf
+# Routing rules adapted for Mihomo by build-factory (CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/)
+IP-CIDR,192.168.0.0/16
+IP-CIDR,10.0.0.0/8
+IP-CIDR,172.16.0.0/12
+IP-CIDR,127.0.0.0/8
+IP-CIDR,fe80::/10
+IP-CIDR,fc00::/7
+IP-CIDR,::1/128

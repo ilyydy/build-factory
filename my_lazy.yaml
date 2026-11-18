@@ -1,0 +1,417 @@
+# Johnshall / Shadowrocket-ADBlock-Rules-Forever: https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever/lazy.conf
+# Routing rules adapted for Mihomo by build-factory (CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/)
+mode: rule
+proxy-providers: {}
+profile:
+  store-selected: true
+
+proxy-groups:
+  - name: "节点选择"
+    type: "select"
+    include-all: true
+    empty-fallback: "REJECT"
+  - name: "新加坡"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(新加坡|Singapore|\\bSG\\b|🇸🇬)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "香港"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(香港|Hong[ -]?Kong|\\bHK\\b|🇭🇰)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "美国"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(美国|美國|United States|\\bUSA\\b|America|\\bUS\\b|🇺🇸)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "日本"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(日本|Japan|\\bJP\\b|🇯🇵)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "台湾"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(台湾|台灣|Taiwan|\\bTW\\b|🇹🇼)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "泰国"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(泰国|泰國|Thailand|\\bTH\\b|🇹🇭)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "韩国"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(韩国|韓國|South Korea|Korea|\\bKR\\b|🇰🇷)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "菲律宾"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(菲律宾|菲律賓|Philippines|\\bPH\\b|🇵🇭)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "德国"
+    type: "url-test"
+    include-all: true
+    filter: "(?i)(德国|德國|Germany|\\bDE\\b|🇩🇪)"
+    url: "https://www.gstatic.com/generate_204"
+    interval: 600
+    tolerance: 10
+    timeout: 5000
+    empty-fallback: "REJECT"
+  - name: "OpenAI"
+    type: "select"
+    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+  - name: "TikTok"
+    type: "select"
+    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+  - name: "Gemini"
+    type: "select"
+    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+  - name: "Anthropic"
+    type: "select"
+    proxies: ["节点选择","新加坡","台湾","日本","韩国","美国"]
+
+rule-providers:
+  blackmatrix-openai-openai:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/OpenAI/OpenAI.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-tiktok-tiktok:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/TikTok/TikTok.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-gemini-gemini:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Gemini/Gemini.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-anthropic-anthropic:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Anthropic/Anthropic.yaml"
+    proxy: DIRECT
+    interval: 86400
+  proxyrules-ai:
+    type: http
+    behavior: classical
+    format: text
+    url: "https://raw.githubusercontent.com/iab0x00/ProxyRules/main/Rule/AI.txt"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-youtube-youtube:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/YouTube/YouTube.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-netflix-netflix:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Netflix/Netflix.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-disney-disney:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Disney/Disney.yaml"
+    proxy: DIRECT
+    interval: 86400
+  my_lazy-proxy-1-domain:
+    type: http
+    behavior: domain
+    format: text
+    url: "https://raw.githubusercontent.com/ilyydy/build-factory/release/clash-rules/my_lazy-proxy-1-domain.txt"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-hbo-hbo:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/HBO/HBO.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-spotify-spotify:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Spotify/Spotify.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-telegram-telegram:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Telegram/Telegram.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-paypal-paypal:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/PayPal/PayPal.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-twitter-twitter:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Twitter/Twitter.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-facebook-facebook:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Facebook/Facebook.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-amazon-amazon:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Amazon/Amazon.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-sony-sony:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sony/Sony.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-nintendo-nintendo:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Nintendo/Nintendo.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-epic-epic:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Epic/Epic.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-steamcn-steamcn:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/SteamCN/SteamCN.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-steam-steam:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Steam/Steam.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-game-game:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Game/Game.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-github-github:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/GitHub/GitHub.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-microsoft-microsoft:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Microsoft/Microsoft.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-google-google:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Google/Google.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-apple-apple:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Apple/Apple.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-bilibili-bilibili:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/BiliBili/BiliBili.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-neteasemusic-neteasemusic:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/NetEaseMusic/NetEaseMusic.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-baidu-baidu:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Baidu/Baidu.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-douban-douban:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouBan/DouBan.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-wechat-wechat:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/WeChat/WeChat.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-sina-sina:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Sina/Sina.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-zhihu-zhihu:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Zhihu/Zhihu.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-xiaohongshu-xiaohongshu:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/XiaoHongShu/XiaoHongShu.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-douyin-douyin:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/DouYin/DouYin.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-global-global:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Global/Global.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-china-china:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/China/China.yaml"
+    proxy: DIRECT
+    interval: 86400
+  blackmatrix-lan-lan:
+    type: http
+    behavior: classical
+    format: yaml
+    url: "https://raw.githubusercontent.com/blackmatrix7/ios_rule_script/master/rule/Clash/Lan/Lan.yaml"
+    proxy: DIRECT
+    interval: 86400
+
+rules:
+  - "DOMAIN-SUFFIX,cityline.com,节点选择"
+  - "RULE-SET,blackmatrix-openai-openai,OpenAI"
+  - "RULE-SET,blackmatrix-tiktok-tiktok,TikTok"
+  - "RULE-SET,blackmatrix-gemini-gemini,Gemini"
+  - "RULE-SET,blackmatrix-anthropic-anthropic,Anthropic"
+  - "RULE-SET,proxyrules-ai,节点选择"
+  - "RULE-SET,blackmatrix-youtube-youtube,节点选择"
+  - "RULE-SET,blackmatrix-netflix-netflix,节点选择"
+  - "RULE-SET,blackmatrix-disney-disney,节点选择"
+  - "RULE-SET,my_lazy-proxy-1-domain,节点选择"
+  - "RULE-SET,blackmatrix-hbo-hbo,节点选择"
+  - "RULE-SET,blackmatrix-spotify-spotify,节点选择"
+  - "RULE-SET,blackmatrix-telegram-telegram,节点选择"
+  - "RULE-SET,blackmatrix-paypal-paypal,节点选择"
+  - "RULE-SET,blackmatrix-twitter-twitter,节点选择"
+  - "RULE-SET,blackmatrix-facebook-facebook,节点选择"
+  - "RULE-SET,blackmatrix-amazon-amazon,节点选择"
+  - "RULE-SET,blackmatrix-sony-sony,节点选择"
+  - "RULE-SET,blackmatrix-nintendo-nintendo,节点选择"
+  - "RULE-SET,blackmatrix-epic-epic,节点选择"
+  - "RULE-SET,blackmatrix-steamcn-steamcn,节点选择"
+  - "RULE-SET,blackmatrix-steam-steam,节点选择"
+  - "RULE-SET,blackmatrix-game-game,节点选择"
+  - "RULE-SET,blackmatrix-github-github,节点选择"
+  - "RULE-SET,blackmatrix-microsoft-microsoft,节点选择"
+  - "RULE-SET,blackmatrix-google-google,节点选择"
+  - "RULE-SET,blackmatrix-apple-apple,DIRECT"
+  - "RULE-SET,blackmatrix-bilibili-bilibili,DIRECT"
+  - "RULE-SET,blackmatrix-neteasemusic-neteasemusic,DIRECT"
+  - "RULE-SET,blackmatrix-baidu-baidu,DIRECT"
+  - "RULE-SET,blackmatrix-douban-douban,DIRECT"
+  - "RULE-SET,blackmatrix-wechat-wechat,DIRECT"
+  - "RULE-SET,blackmatrix-sina-sina,DIRECT"
+  - "RULE-SET,blackmatrix-zhihu-zhihu,DIRECT"
+  - "RULE-SET,blackmatrix-xiaohongshu-xiaohongshu,DIRECT"
+  - "RULE-SET,blackmatrix-douyin-douyin,DIRECT"
+  - "RULE-SET,blackmatrix-tiktok-tiktok,节点选择"
+  - "RULE-SET,blackmatrix-global-global,节点选择"
+  - "RULE-SET,blackmatrix-china-china,DIRECT"
+  - "RULE-SET,blackmatrix-lan-lan,DIRECT"
+  - "GEOIP,CN,DIRECT"
+  - "MATCH,节点选择"

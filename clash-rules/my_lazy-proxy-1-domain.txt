@@ -1,0 +1,5 @@
+# Johnshall / Shadowrocket-ADBlock-Rules-Forever: https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever/lazy.conf
+# Routing rules adapted for Mihomo by build-factory (CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/)
++.litix.io
++.discomax.com
++.brightline.tv
