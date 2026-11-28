@@ -1,9 +1,9 @@
 # Johnshall / Shadowrocket-ADBlock-Rules-Forever: https://johnshall.github.io/Shadowrocket-ADBlock-Rules-Forever/sr_top500_banlist_ad.conf
 # Routing rules adapted for Mihomo by build-factory (CC BY-SA 4.0: https://creativecommons.org/licenses/by-sa/4.0/)
-DOMAIN-KEYWORD,gle
 DOMAIN-KEYWORD,goog
 IP-CIDR,85.17.73.31/32
 DOMAIN-KEYWORD,google
+DOMAIN-KEYWORD,gle
 IP-CIDR,50.7.31.230/32
 DOMAIN-KEYWORD,blogspot
 DOMAIN-KEYWORD,google
